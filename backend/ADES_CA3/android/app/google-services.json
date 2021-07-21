@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "879481870450",
+    "firebase_url": "https://adesca3-ca912-default-rtdb.firebaseio.com",
+    "project_id": "adesca3-ca912",
+    "storage_bucket": "adesca3-ca912.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879481870450:android:fe19a4aac457ea83d30aeb",
+        "android_client_info": {
+          "package_name": "com.ades_ca3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879481870450-6uof2qq57f6fajjfj0vpm2ms7e6gkiel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtMukDL0m2vKAZOX9pboWk3RmIy5KUNbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879481870450-6uof2qq57f6fajjfj0vpm2ms7e6gkiel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
