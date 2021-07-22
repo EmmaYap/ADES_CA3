@@ -24,7 +24,6 @@ app.use(express.json());
 app.options('*', cors());
 
 const port = process.env.PORT || 8000
-const host = "https://ades-ca3-hosting.herokuapp.com"
 
 app.use(cors());
 
@@ -68,7 +67,7 @@ app.post('/login', (req, res) => {
     })
 });
 
-app.listen(port, host, () => {
+app.listen(port,() => {
     console.log(`App is listening on Port ${port}`)
 });
 
