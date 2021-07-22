@@ -29,6 +29,10 @@ const host = "https://ades-ca3-hosting.herokuapp.com"
 app.use(cors());
 
 
+app.get('/', (req,res) => {
+    res.send("Hello World");
+})
+
 app.post('/login', (req, res) => {
     var username = req.body.username;
     var password = req.body.password;
