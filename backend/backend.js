@@ -7,7 +7,7 @@ var mysql = require('mysql');
 var db = {
     getConnection: function () {
         var conn = mysql.createConnection({
-            host: "localhost",
+            host: "https://ades-ca3-hosting.herokuapp.com",
             user: "root",
             password: "99Ab12529",
             database: "ades_ca3"
