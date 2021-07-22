@@ -26,6 +26,7 @@
 
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert, View, TextInput } from 'react-native';
+import port from "../backend/backend"
 
 export default function App() {
 
@@ -33,7 +34,7 @@ export default function App() {
   const [Password, SetPassword] = React.useState("");
 
   function Login() {
-    fetch("https://ades-ca3-hosting.herokuapp.com/login", {
+    fetch(`https://ades-ca3-hosting.herokuapp.com:${port}/login`, {
       method: 'POST',
       body: JSON.stringify({
         username: Username,
@@ -51,7 +52,7 @@ export default function App() {
         Alert.alert(`Login Failed`, `Invalid Username or Password was provided`)
       }
       else {
-        Alert.alert('System Issue', 'Unknown error')
+        Alert.alert('System Issue', `Error Code: ${response.status}`)
       }
       SetName("");
       SetPassword("");

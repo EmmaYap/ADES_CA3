@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 var mysql = require('mysql');
@@ -23,7 +22,7 @@ app.use(express.json());
 
 app.options('*', cors());
 
-const port = process.env.PORT || 8000
+export const port = process.env.PORT || 8000
 
 app.use(cors());
 
