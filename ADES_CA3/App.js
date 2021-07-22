@@ -56,6 +56,9 @@ export default function App() {
       SetName("");
       SetPassword("");
     })
+    .catch(function (error){
+      Alert.alert(`Hello ${error}`)
+    })
   }
 
 

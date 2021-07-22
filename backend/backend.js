@@ -66,7 +66,7 @@ app.post('/login', (req, res) => {
     })
 });
 
-app.listen(port,() => {
+app.listen(port, "https://ades-ca3-hosting.herokuapp.com", () => {
     console.log(`App is listening on Port ${port}`)
 });
 
