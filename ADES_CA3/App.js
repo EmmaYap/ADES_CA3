@@ -26,10 +26,9 @@
 
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert, View, TextInput } from 'react-native';
-import port from "../backend/backend"
 
 export default function App() {
-
+  const port = process.env.PORT || 8000;
   const [Username, SetName] = React.useState("");
   const [Password, SetPassword] = React.useState("");
 

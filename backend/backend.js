@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.options('*', cors());
 
-export const port = process.env.PORT || 8000
+const port = process.env.PORT || 8000
 
 app.use(cors());
 
