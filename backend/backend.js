@@ -21,7 +21,7 @@ app.post('/login', (req, res, next) => {
     const password = req.query.password;
     return connection.login(username, password)
         .then(function () {
-            return res.status(201).json({ User: username });
+            return res.status(201).json({ 'User': username });
         })
         .catch(function (error){
             return res.status(error.status).send(error)
@@ -33,7 +33,7 @@ app.post('/signup', (req, res, next) => {
     const password = req.body.password;
     return connection.signup(username, password)
         .then(function () {
-            return res.status(201).json({User: username, Password: password});
+            return res.status(201).json({'User': username, 'Password': password});
         })
         .catch(function (error){
             return res.status(error.status).send(error)
