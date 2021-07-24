@@ -16,13 +16,13 @@ export default function App({ navigation: { navigate } }) {
       if (response.status == 201) {
         Alert.alert(`Login Succeeded`, `Welcome ${Username} to DailyMemes`)
         navigate('Upload');
-      }
+      } 
       else if (response.status == 401) {
         Alert.alert(`Login Failed`, `Invalid Username or Password was provided`)
       }
       else {
         Alert.alert('System Issue', `Error Code: ${response.status}\n ${host}/login?username=${Username}&password=${Password}`)
-        console.log(response);
+        console.log(response.status);
       }
       SetName("");
       SetPassword("");

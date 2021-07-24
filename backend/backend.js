@@ -23,7 +23,9 @@ app.post('/login', (req, res, next) => {
         .then(function () {
             return res.status(201).json({ User: username });
         })
-        .catch(next);
+        .catch(function (error){
+            return res.status(error.status).send(error)
+        });
 });
 
 app.post('/signup', (req, res, next) => {
