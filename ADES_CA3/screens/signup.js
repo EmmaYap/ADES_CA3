@@ -9,16 +9,16 @@ export default function App({ navigation: { navigate } }) {
   const host = 'https://ades-ca3-hosting.herokuapp.com'
 
   function Login() {
-    fetch(`${host}`, {
+    fetch(`${host}/signup?username=${Username}&password=${Password}`, {
       method: 'POST'
     }).then(function (response) {
 
       if (response.status == 201) {
-        Alert.alert(`Login Succeeded`, `Welcome ${Username} to DailyMemes`)
+        Alert.alert(`Account Created`, `Welcome ${Username} to DailyMemes`)
         navigate('Upload');
       }
-      else if (response.status == 401) {
-        Alert.alert(`Login Failed`, `Invalid Username or Password was provided`)
+      else if (response.status == 4019) {
+        Alert.alert(`Account already exists`, `Choose a different username was provided`)
       }
       else {
         Alert.alert('System Issue', `Error Code: ${response.status}\n ${host}/login?username=${Username}&password=${Password}`)

@@ -10,12 +10,19 @@ const pool = new Pool({
 
 module.exports = class Profile {
 
+    static drop () {
+        return pool.query(
+            `
+            DROP TABLE Accounts
+            `,
+        );
+    }
     static login(username, password) {
         return pool.query(
             `
             SELECT * FROM Accounts
-            username = '$1' AND
-            password = '$2'
+            username = $1 AND
+            password = $2
             `,
             [username, password],
         );
