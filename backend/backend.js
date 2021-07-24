@@ -29,8 +29,8 @@ app.post('/login', (req, res, next) => {
 });
 
 app.post('/signup', (req, res, next) => {
-    const username = req.body.username;
-    const password = req.body.password;
+    const username = 'Bob';
+    const password = 'BobLovesMark';
     return connection.signup(username, password)
         .then(function () {
             return res.status(201).json({'User': username, 'Password': password});
