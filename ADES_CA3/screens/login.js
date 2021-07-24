@@ -15,15 +15,13 @@ export default function App({ navigation: { navigate } }) {
 
       if (response.status == 201) {
         Alert.alert(`Login Succeeded`, `Welcome ${Username} to DailyMemes`)
-        navigate('Upload')
+        navigate('Upload');
       }
       else if (response.status == 401) {
         Alert.alert(`Login Failed`, `Invalid Username or Password was provided`)
-        navigate('Upload')
       }
       else {
-        Alert.alert('System Issue', `Error Code: ${response.status}`)
-        navigate('Upload')
+        Alert.alert('System Issue', `Error Code: ${response.status}\n ${host}/login?username=${Username}&password=${Password}`)
       }
       SetName("");
       SetPassword("");

@@ -21,7 +21,7 @@ app.post('/login', (req, res, next) => {
     const password = req.query.password;
     return connection.login(username, password)
         .then(function () {
-            return res.status(201).json({ User: username });
+            return res.status(201).send(username);
         })
         .catch(next);
 });
