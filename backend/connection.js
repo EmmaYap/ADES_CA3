@@ -13,7 +13,10 @@ module.exports = class Profile {
     static drop () {
         return pool.query(
             `
-            DROP TABLE Accounts
+            CREATE TABLE IF NOT EXISTS Accounts (
+                username VARCHAR primary key,
+                password VARCHAR not null
+            )
             `,
         );
     }
