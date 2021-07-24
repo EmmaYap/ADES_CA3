@@ -13,9 +13,10 @@ module.exports = class Profile {
     static login(username, password) {
         return pool.query(
             `
-            SELECT * FROM Accounts
-            username = '$1' AND
-            password = '$2'
+            SELECT * FROM Accounts 
+            WHERE
+            username = $1 AND
+            password = $2
             `,
             [username, password],
         );

@@ -20,9 +20,6 @@ export default function App({ navigation: { navigate } }) {
       else if (response.status == 401) {
         Alert.alert(`Login Failed`, `Invalid Username or Password was provided`)
       }
-      else if (response.status == 500){
-        Alert.alert('Why no work', `Error Code: ${response.status}`)
-      }
       else {
         Alert.alert('System Issue', `Error Code: ${response.status}\n ${host}/login?username=${Username}&password=${Password}`)
         console.log(response.status);
