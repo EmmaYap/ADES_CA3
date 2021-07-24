@@ -16,10 +16,6 @@ app.get('/', (req, res, next) => {
     res.send("Hello World");
 });
 
-app.post('/', (req, res, next) => {
-    return connection.drop();
-})
-
 app.post('/login', (req, res, next) => {
     const username = req.query.username;
     const password = req.query.password;

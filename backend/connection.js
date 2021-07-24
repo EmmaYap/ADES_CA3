@@ -10,16 +10,6 @@ const pool = new Pool({
 
 module.exports = class Profile {
 
-    static drop () {
-        return pool.query(
-            `
-            CREATE TABLE IF NOT EXISTS Accounts (
-                username VARCHAR primary key,
-                password VARCHAR not null
-            )
-            `,
-        );
-    }
     static login(username, password) {
         return pool.query(
             `

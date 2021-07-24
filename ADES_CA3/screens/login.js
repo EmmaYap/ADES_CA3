@@ -9,7 +9,7 @@ export default function App({ navigation: { navigate } }) {
   const host = 'https://ades-ca3-hosting.herokuapp.com'
 
   function Login() {
-    fetch(`${host}`, {
+    fetch(`${host}/login?username=${Username}&password=${Password}`, {
       method: 'POST'
     }).then(function (response) {
 
