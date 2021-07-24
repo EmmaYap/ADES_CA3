@@ -1,107 +1,61 @@
 const express = require('express');
 const cors = require('cors');
-var mysql = require('mysql');
+const connection = require('./connection');
+const createHttpError = require('http-errors');
 
-
-var db = {
-    getConnection: function () {
-        var conn = mysql.createConnection({
-            host: "https://ades-ca3-hosting.herokuapp.com",
-            user: "root",
-            password: "99Ab12529",
-            database: "ades_ca3"
-        });
-
-        return conn;
-    }
-};
 const app = express();
-
-app.use(express.urlencoded({extended: true})); 
-app.use(express.json());
 
 app.options('*', cors());
 
-const port = process.env.PORT || 8000
+
 
 app.use(cors());
 
 
-app.get('/', (req,res) => {
+app.get('/', (req, res, next) => {
     res.send("Hello World");
+});
+
+app.post('/', (req, res, next) => {
+    return connection.accounts()
+        .then(function () {
+            return res.sendStatus(200);
+        })
+        .catch(next);
 })
 
-app.post('/login', (req, res) => {
-    var username = req.body.username;
-    var password = req.body.password;
-
-    userDB.loginUser(username, password, function (err, result) {
-        if (err) {
-            res.status(500);
-            res.send(err.statusCode);
-        }
-        else {
-            if (!result) {
-                var message = {
-                    "Error": "Invalid Login"
-                };
-
-                res.status(401).send(message);
-            }
-            else {
-                console.log(result)
-
-                var userData = {
-                    "username": result[0].username,
-                    "userid": result[0].userid,
-                    "email": result[0].email
-                }
-
-                var message = {
-                    "UserData": JSON.stringify(userData)
-                };
-                res.status(201).send(message);
-            }
-        }
-    })
+app.post('/login', (req, res, next) => {
+    const username = req.query.username;
+    const password = req.query.password;
+    return connection.login(username, password)
+        .then(function () {
+            return res.status(201).json({ User: username });
+        })
+        .catch(next);
 });
 
-app.listen(port, "https://ades-ca3-hosting.herokuapp.com", () => {
+app.post('/signup', (req, res, next) => {
+    const username = req.query.username;
+    const password = req.body.password;
+    return connection.signup(username, password)
+        .then(function () {
+            return res.json({ User: username });
+        })
+        .catch(next);
+});
+
+app.use((req, res, next) => next(createHttpError(404, `Unknown resource ${req.method} ${req.originalUrl}`)));
+
+app.use(function (err, req, res, next) {
+    console.error(err);
+    const status = err.status || 500;
+    const message = err.message || 'Unknown Error!';
+    return res.status(status).json({
+        error: message,
+    });
+});
+
+const port = process.env.PORT || 8000
+app.listen(port, () => {
     console.log(`App is listening on Port ${port}`)
 });
-
-
-var userDB = {
-    loginUser: function (username, password, callback) {
-
-        var conn = db.getConnection();
-        conn.connect(function (err) {
-            if (err) {
-                console.log(err);
-                return callback(err, null, null);
-            }
-            else {
-                console.log("Connected!");
-
-                var sql = 'select userid, username, email from users where username=? and password=?';
-
-                conn.query(sql, [username, password], function (err, result) {
-                    conn.end();
-
-                    if (err) {
-                        console.log(err);
-                        return callback(err, null);
-                    }
-                    if (result.length == 0) {
-
-                        callback(null, null);
-                        return;
-                    }
-                    else {
-                        return callback(null, result);
-                    }
-                });
-            }
-        });
-    }
-};

@@ -28,20 +28,15 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert, View, TextInput } from 'react-native';
 
 export default function App() {
-  const port = process.env.PORT || 8000;
+
   const [Username, SetName] = React.useState("");
   const [Password, SetPassword] = React.useState("");
 
+  const host = 'https://ades-ca3-hosting.herokuapp.com'
+
   function Login() {
-    fetch(`https://ades-ca3-hosting.herokuapp.com:${port}/login`, {
-      method: 'POST',
-      body: JSON.stringify({
-        username: Username,
-        password: Password,
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    fetch(`${host}/login?username=${Username}&password?Password`, {
+      method: 'POST'
     }).then(function (response) {
 
       if (response.status == 201) {
@@ -57,7 +52,7 @@ export default function App() {
       SetPassword("");
     })
     .catch(function (error){
-      Alert.alert(`Hello ${error}`)
+      Alert.alert(`${error}`)
     })
   }
 
