@@ -9,24 +9,13 @@ const pool = new Pool({
 });
 
 module.exports = class Profile {
-    static accounts() {
-        return pool.query(
-            `
-            CREATE TABLE IF NOT EXISTS Accounts (
-                id SERIAL primary key,
-                username VARCHAR not null,
-                password VARCHAR not null
-            );
-            `,
-        );
-    }
 
     static login(username, password) {
         return pool.query(
             `
             SELECT * FROM Accounts
-            username = $1 AND
-            password = $2
+            username = '$1' AND
+            password = '$2'
             `,
             [username, password],
         );

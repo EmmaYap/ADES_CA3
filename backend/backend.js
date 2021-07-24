@@ -16,14 +16,6 @@ app.get('/', (req, res, next) => {
     res.send("Hello World");
 });
 
-app.post('/', (req, res, next) => {
-    return connection.accounts()
-        .then(function () {
-            return res.sendStatus(200);
-        })
-        .catch(next);
-})
-
 app.post('/login', (req, res, next) => {
     const username = req.query.username;
     const password = req.query.password;

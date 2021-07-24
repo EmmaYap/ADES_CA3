@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Image, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Alert } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
 import * as Progress from 'react-native-progress';
@@ -82,7 +82,7 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity style={styles.selectButton} onPress={selectImage}>
         <Text style={styles.buttonText}>Pick an image</Text>
       </TouchableOpacity>
@@ -101,7 +101,7 @@ export default function App() {
         )}
         <Text>{downloadUrl}</Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 

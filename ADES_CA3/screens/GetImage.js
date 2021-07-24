@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, SafeAreaView, Image, Alert } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import database from '@react-native-firebase/database';
 
 export default function App() {
@@ -27,12 +27,12 @@ export default function App() {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <TouchableOpacity style={styles.selectButton} onPress={read}>
                 <Text style={styles.buttonText}> Read Storage</Text>
             </TouchableOpacity>
             <Image source={{ uri: ImageSet }} style={styles.imageBox} />
-        </SafeAreaView>
+        </View>
     );
 }
 
