@@ -24,8 +24,6 @@ export default function App({ navigation: { navigate } }) {
         Alert.alert('System Issue', `Error Code: ${response.status}\n ${host}/login?username=${Username}&password=${Password}`)
         console.log(response.status);
       }
-      SetName("");
-      SetPassword("");
     })
     .catch(function (error){
       Alert.alert(`${error}`)

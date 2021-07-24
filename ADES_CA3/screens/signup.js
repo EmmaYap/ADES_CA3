@@ -15,7 +15,7 @@ export default function App({ navigation: { navigate } }) {
 
             if (response.status == 201) {
                 Alert.alert(`Account Created`, `Welcome ${Username} to DailyMemes`)
-                navigate('Upload');
+                navigate('Login');
             }
             else if (response.status == 401) {
                 Alert.alert(`Account already exists`, `Choose a different username`)

@@ -23,8 +23,8 @@ app.post('/login', (req, res, next) => {
         .then(function () {
             return res.status(201).json({ 'User': username });
         })
-        .catch(function (error){
-            return res.status(error.status).send(error)
+        .catch(function (){
+            return res.status(500).send('error')
         });
 });
 
@@ -33,10 +33,10 @@ app.post('/signup', (req, res, next) => {
     const password = req.query.password;
     return connection.signup(username, password)
         .then(function () {
-            return res.status(201).json({'User': username, 'Password': password});
+            return res.status(404).json({'User': username, 'Password': password});
         })
-        .catch(function (error){
-            return res.status(error.status).send(error)
+        .catch(function (){
+            return res.status(500).send('error')
         });
 });
 
