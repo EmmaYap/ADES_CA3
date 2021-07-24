@@ -8,21 +8,28 @@ export default function App({ navigation: { navigate } }) {
 
   const host = 'https://ades-ca3-hosting.herokuapp.com'
 
-  function Login() {
-    fetch(`${host}/signup?username=${Username}&password=${Password}`, {
-      method: 'POST'
+  function SignUp() {
+    fetch(`${host}/signup`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username: Username,
+        password: Password
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+    }
     }).then(function (response) {
 
       if (response.status == 201) {
         Alert.alert(`Account Created`, `Welcome ${Username} to DailyMemes`)
         navigate('Upload');
       }
-      else if (response.status == 4019) {
-        Alert.alert(`Account already exists`, `Choose a different username was provided`)
+      else if (response.status == 401) {
+        Alert.alert(`Account already exists`, `Choose a different username`)
       }
       else {
-        Alert.alert('System Issue', `Error Code: ${response.status}\n ${host}/login?username=${Username}&password=${Password}`)
-        console.log(response);
+        Alert.alert('System Issue', `Error Code: ${response.status}\n ${response.url}`)
+        console.log(response.status);
       }
       SetName("");
       SetPassword("");
@@ -45,12 +52,8 @@ export default function App({ navigation: { navigate } }) {
         <Text style={styles.label2}>Password :</Text>
         <TextInput placeholder="Enter Password here" style={styles.inputbox2}
           onChangeText={text => SetPassword(text)} value={Password} />
-        <TouchableOpacity style={styles.LoginButton} onPress={Login}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <Text style={styles.CreateAccText}>No Account ?</Text>
-        <TouchableOpacity style={styles.CreateAccButton}>
-          <Text style={styles.CreateAccLink}>Create Account</Text>
+        <TouchableOpacity style={styles.LoginButton} onPress={SignUp}>
+          <Text style={styles.buttonText}>SignUp</Text>
         </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>

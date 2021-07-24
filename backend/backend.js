@@ -29,13 +29,15 @@ app.post('/login', (req, res, next) => {
 });
 
 app.post('/signup', (req, res, next) => {
-    const username = req.query.username;
+    const username = req.body.username;
     const password = req.body.password;
     return connection.signup(username, password)
         .then(function () {
-            return res.json({ User: username });
+            return res.status(201).send('Accounted Created');
         })
-        .catch(next);
+        .catch(function (error){
+            return res.status(error.status).send(error)
+        });
 });
 
 app.use((req, res, next) => next(createHttpError(404, `Unknown resource ${req.method} ${req.originalUrl}`)));
