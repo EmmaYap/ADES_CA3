@@ -23,9 +23,7 @@ app.post('/login', (req, res, next) => {
         .then(function () {
             return res.status(201).json({ 'User': username });
         })
-        .catch(function (){
-            return res.status(500).send('error')
-        });
+        .catch(next);
 });
 
 app.post('/signup', (req, res, next) => {
@@ -35,9 +33,7 @@ app.post('/signup', (req, res, next) => {
         .then(function () {
             return res.status(404).json({'User': username, 'Password': password});
         })
-        .catch(function (){
-            return res.status(500).send('error')
-        });
+        .catch(next);
 });
 
 app.use((req, res, next) => next(createHttpError(404, `Unknown resource ${req.method} ${req.originalUrl}`)));
