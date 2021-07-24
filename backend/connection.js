@@ -14,8 +14,8 @@ module.exports = class Profile {
         return pool.query(
             `
             SELECT * FROM Accounts
-            username = $1 AND
-            password = $2
+            username = '$1' AND
+            password = '$2'
             `,
             [username, password],
         );
