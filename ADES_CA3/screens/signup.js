@@ -9,8 +9,15 @@ export default function App({ navigation: { navigate } }) {
     const host = 'https://ades-ca3-hosting.herokuapp.com'
 
     function SignUp() {
-        fetch(`${host}/signup?username=${Username}&password=${Password}`, {
+        fetch(`${host}/signup`, {
             method: 'POST',
+            body: JSON.stringify({
+                'username': Username,
+                'password' : Password
+              }),
+              headers: {
+                'Content-Type': 'application/json'
+              }
         }).then(function (response) {
 
             if (response.status == 201) {
