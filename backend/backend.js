@@ -17,18 +17,18 @@ app.get('/', (req, res, next) => {
 });
 
 app.post('/login', (req, res, next) => {
-    const username = req.query.username;
-    const password = req.query.password;
+    const username = req.body.username;
+    const password = req.body.password;
     return connection.login(username, password)
         .then(function () {
-            return res.status(201).json({ 'User': username });
+            return res.status(201).send({ 'User': username });
         })
         .catch(next);
 });
 
 app.post('/signup', (req, res, next) => {
-    const username = req.query.username;
-    const password = req.query.password;
+    const username = req.body.username;
+    const password = req.body.password;
     return connection.signup(username, password)
         .then(function () {
             return res.status(201).json({'User': username, 'Password': password});

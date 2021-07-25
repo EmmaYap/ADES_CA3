@@ -9,14 +9,20 @@ export default function App({ navigation: { navigate } }) {
   const host = 'https://ades-ca3-hosting.herokuapp.com'
 
   function Login() {
-    fetch(`${host}/login?username=${Username}&password=${Password}`, {
-      method: 'POST'
+    fetch(`${host}/login`, {
+      method: 'POST',
+      body: JSON.stringify({
+        'User': Username,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }).then(function (response) {
 
       if (response.status == 201) {
         Alert.alert(`Login Succeeded`, `Welcome ${Username} to DailyMemes`)
         navigate('Upload');
-      } 
+      }
       else if (response.status == 401) {
         Alert.alert(`Login Failed`, `Invalid Username or Password was provided`)
       }
@@ -25,9 +31,9 @@ export default function App({ navigation: { navigate } }) {
         console.log(response.status);
       }
     })
-    .catch(function (error){
-      Alert.alert(`${error}`)
-    })
+      .catch(function (error) {
+        Alert.alert(`${error}`)
+      })
   }
 
 
