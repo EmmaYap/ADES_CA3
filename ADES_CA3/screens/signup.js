@@ -9,35 +9,33 @@ export default function App({ navigation: { navigate } }) {
     const host = 'https://ades-ca3-hosting.herokuapp.com'
 
     function SignUp() {
-        fetch(`${host}/signup`, {
+        fetch(`${host}/signup?username=${Username}`, {
             method: 'POST',
             body: JSON.stringify({
-                username : Username,
-                password : Password
-              }),
-              headers: {
+                password: Password
+            }),
+            headers: {
                 'Content-Type': 'application/json'
-              }
-        }).then(function (response) {
-
-            if (response.status == 201) {
-                Alert.alert(`Account Created`, `Welcome ${Username} to DailyMemes`)
-                navigate('Login');
             }
-            else if (response.status == 401) {
-                Alert.alert(`Account already exists`, `Choose a different username`)
-            }
-            else {
-                Alert.alert('System Issue', `Error Code: ${response.status}\n ${response.url}`)
-                console.log(response.status);
-                console.log(response.body);
-            }
-            SetName("");
-            SetPassword("");
         })
+            .then(function (response) {
+
+                if (response.status == 201) {
+                    Alert.alert(`Account Created`, `Welcome ${Username} to DailyMemes`)
+                    navigate('Login');
+                }
+                else if (response.status == 401) {
+                    Alert.alert(`Account already exists`, `Choose a different username`)
+                }
+                else {
+                    Alert.alert('System Issue', `Error Code: ${response.status}\n ${response.url}`)
+                    console.log(response.status);
+                }
+            })
             .catch(function (error) {
                 Alert.alert(`${error}`)
             })
+
     }
 
 

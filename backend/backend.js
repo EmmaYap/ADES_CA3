@@ -21,17 +21,17 @@ app.post('/login', (req, res, next) => {
     const password = req.body.password;
     return connection.login(username, password)
         .then(function () {
-            return res.status(201).send({ username: username, password:password });
+            return res.status(201).send({ username: username, password: password });
         })
         .catch(next);
 });
 
 app.post('/signup', (req, res, next) => {
-    const Name = req.body.username;
+    const Name = req.query.username;
     const Pass = req.body.password;
     return connection.signup(Name, Pass)
         .then(function () {
-            res.status(201).json({logged_in: true});
+            return res.status(201).json({logged_in: true});
         })
         .catch(next);
 });
