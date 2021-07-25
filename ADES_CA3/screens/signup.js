@@ -4,19 +4,19 @@ import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard,
 export default function App({ navigation: { navigate } }) {
 
     const [Username, SetName] = React.useState("");
-    const [Password, SetPassword] = React.useState("");
+    const [password, SetPassword] = React.useState("");
 
     const host = 'https://ades-ca3-hosting.herokuapp.com'
 
     function SignUp() {
         fetch(`${host}/signup?username=${Username}`, {
             method: 'POST',
-            body: JSON.stringify({
-                password: Password
-            }),
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({
+                password : password
+            })
         })
             .then(function (response) {
 
@@ -29,13 +29,10 @@ export default function App({ navigation: { navigate } }) {
                 }
                 else {
                     Alert.alert('System Issue', `Error Code: ${response.status}\n ${response.url}`)
-                    console.log(response.status);
+                    console.log(response.status)
+                    console.log(response);
                 }
             })
-            .catch(function (error) {
-                Alert.alert(`${error}`)
-            })
-
     }
 
 
@@ -50,7 +47,7 @@ export default function App({ navigation: { navigate } }) {
                     onChangeText={text => SetName(text)} value={Username} />
                 <Text style={styles.label2}>Password :</Text>
                 <TextInput placeholder="Enter Password here" style={styles.inputbox2}
-                    onChangeText={text => SetPassword(text)} value={Password} />
+                    onChangeText={text => SetPassword(text)} value={password} />
                 <TouchableOpacity style={styles.LoginButton} onPress={SignUp}>
                     <Text style={styles.buttonText}>SignUp</Text>
                 </TouchableOpacity>

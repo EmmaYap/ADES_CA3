@@ -4,11 +4,9 @@ const connection = require('./connection');
 const createHttpError = require('http-errors');
 
 const app = express();
+app.use(express.bodyParser());
 
 app.options('*', cors());
-
-
-
 app.use(cors());
 
 
