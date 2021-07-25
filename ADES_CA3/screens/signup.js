@@ -12,8 +12,8 @@ export default function App({ navigation: { navigate } }) {
         fetch(`${host}/signup`, {
             method: 'POST',
             body: JSON.stringify({
-                'username': Username,
-                'password' : Password
+                username: Username,
+                password : Password
               }),
               headers: {
                 'Content-Type': 'application/json'

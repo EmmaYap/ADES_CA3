@@ -12,7 +12,7 @@ export default function App({ navigation: { navigate } }) {
     fetch(`${host}/login`, {
       method: 'POST',
       body: JSON.stringify({
-        'User': Username,
+        username: Username,
       }),
       headers: {
         'Content-Type': 'application/json'
