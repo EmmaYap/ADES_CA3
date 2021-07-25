@@ -30,6 +30,7 @@ export default function App({ navigation: { navigate } }) {
             else {
                 Alert.alert('System Issue', `Error Code: ${response.status}\n ${response.url}`)
                 console.log(response.status);
+                console.log(response.body);
             }
             SetName("");
             SetPassword("");

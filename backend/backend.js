@@ -31,7 +31,7 @@ app.post('/signup', (req, res, next) => {
     const Pass = req.body.password;
     return connection.signup(Name, Pass)
         .then(function () {
-            return res.status(201).json({logged_in: true});
+            res.status(201).json({logged_in: true});
         })
         .catch(next);
 });
