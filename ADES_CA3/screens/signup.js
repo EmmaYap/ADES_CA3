@@ -24,8 +24,14 @@ export default function App({ navigation: { navigate } }) {
             .then(function (response) {
 
                 if (response.status == 201) {
-                    Alert.alert(`Account Created`, `Welcome ${Username} to DailyMemes`)
-                    navigate('Login');
+                    if (Username.length < 8 || password.length < 8) {
+                        Alert.alert(`${Username} is too short.`, `Min length is 8`)
+                    }
+                    else {
+                        Alert.alert(`Account Created`, `Welcome ${Username} to DailyMemes`)
+                        navigate('Login');
+                    }
+
                 }
                 else if (response.status == 422) {
                     Alert.alert(`Account already exists`, `Choose a different username`)
@@ -47,10 +53,10 @@ export default function App({ navigation: { navigate } }) {
                 <Text style={styles.Title}>DailyMemes</Text>
                 <Text style={styles.label1}>Username : </Text>
                 <TextInput placeholder="Enter Username here" style={styles.inputbox1} autoCompleteType="username"
-                    onChangeText={text => SetName(text)} value={Username} />
+                    onChangeText={text => SetName(text)} value={Username} minLength={8} />
                 <Text style={styles.label2}>Password :</Text>
                 <TextInput placeholder="Enter Password here" style={styles.inputbox2}
-                    onChangeText={text => SetPassword(text)} value={password} />
+                    onChangeText={text => SetPassword(text)} value={password} secureTextEntry={true}  minLength={8}/>
                 <TouchableOpacity style={styles.LoginButton} onPress={SignUp}>
                     <Text style={styles.buttonText}>SignUp</Text>
                 </TouchableOpacity>

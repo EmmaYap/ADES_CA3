@@ -15,12 +15,15 @@ app.get('/', (req, res, next) => {
 });
 
 app.post('/login', (req, res, next) => {
-    const username = req.body.username;
+    const username = req.query.username;
     const password = req.body.password;
     return connection.login(username, password)
         .then(function () {
             return res.status(201).send({ username: username, password: password });
         })
+        // .catch(function (error){
+            
+        // })
         .catch(next);
 });
 
