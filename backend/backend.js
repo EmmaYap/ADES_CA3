@@ -22,7 +22,7 @@ app.post('/login', (req, res, next) => {
             return res.status(201).send({ username: username, password: password });
         })
         .catch(function (error){
-            if (error.code === 23505){
+            if (error.code == '23505'){
                 return res.status(422).send({message : 'Cannot insert duplicate values'})
             }
         })
