@@ -13,10 +13,9 @@ export default function App({ navigation: { navigate } }) {
   }
 
   function Login() {
-    fetch(`${host}/login`, {
+    fetch(`${host}/login?username=${Username}`, {
       method: 'POST',
       body: JSON.stringify({
-        username: Username,
         password: Password
       }),
       headers: {

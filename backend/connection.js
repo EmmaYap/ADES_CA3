@@ -15,8 +15,8 @@ module.exports = class Profile {
             `
             SELECT * FROM Accounts 
             WHERE
-            username = $1 AND
-            password = $2
+            username = '$1' AND
+            password = '$2'
             `,
             [username, password],
         );
