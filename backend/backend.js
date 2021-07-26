@@ -18,7 +18,8 @@ app.post('/login', (req, res, next) => {
     const username = req.query.username;
     const password = req.body.password;
     return connection.login(username, password)
-        .then(function () {
+        .then(function (result) {
+            if(result)
             return res.status(201).send({ username: username, password: password });
         })
         // .catch(function (error){
