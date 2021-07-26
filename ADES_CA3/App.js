@@ -13,12 +13,12 @@ const App = () => {
   return (
     <NavigationContainer>
       {/* Stack navigator initial page is Home and disable header */}
-      <Stack.Navigator initialRouteName="SignUp" screenOptions={{
+      <Stack.Navigator initialRouteName="Login" screenOptions={{
         headerShown: false
       }}>
         {/* Screens in the stack navigator */}
-        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Upload" component={UploadScreen} />
         <Stack.Screen name="ReadStorage" component={GetImage} />
       </Stack.Navigator>

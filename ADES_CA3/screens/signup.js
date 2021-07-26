@@ -1,8 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert, View, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function App({ navigation: { navigate } }) {
 
+
+    const navigation = useNavigation();
     const [Username, SetName] = React.useState("");
     const [password, SetPassword] = React.useState("");
 
@@ -15,7 +18,7 @@ export default function App({ navigation: { navigate } }) {
                 'Content-Type': 'application/json; charset=utf-8'
             },
             body: JSON.stringify({
-                password : password
+                password: password
             })
         })
             .then(function (response) {
@@ -50,6 +53,10 @@ export default function App({ navigation: { navigate } }) {
                     onChangeText={text => SetPassword(text)} value={password} />
                 <TouchableOpacity style={styles.LoginButton} onPress={SignUp}>
                     <Text style={styles.buttonText}>SignUp</Text>
+                </TouchableOpacity>
+                <Text style={styles.CreateAccText}>Already have an Account ?</Text>
+                <TouchableOpacity style={styles.CreateAccButton} onPress={() => navigation.goBack()}>
+                    <Text style={styles.CreateAccLink}>Login instead</Text>
                 </TouchableOpacity>
             </View>
         </TouchableWithoutFeedback>
@@ -126,7 +133,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: '65%',
         fontSize: 18,
-        left: 80
+        left: 30
     },
     CreateAccLink: {
         fontSize: 18,
@@ -137,6 +144,6 @@ const styles = StyleSheet.create({
     CreateAccButton: {
         position: "absolute",
         top: '65%',
-        left: 200
+        left: 250
     }
 });

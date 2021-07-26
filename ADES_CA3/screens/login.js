@@ -8,11 +8,16 @@ export default function App({ navigation: { navigate } }) {
 
   const host = 'https://ades-ca3-hosting.herokuapp.com'
 
+  function SignUp(){
+    navigate('SignUp')
+  }
+
   function Login() {
     fetch(`${host}/login`, {
       method: 'POST',
       body: JSON.stringify({
         username: Username,
+        password: Password
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -31,9 +36,6 @@ export default function App({ navigation: { navigate } }) {
         console.log(response.status);
       }
     })
-      .catch(function (error) {
-        Alert.alert(`${error}`)
-      })
   }
 
 
@@ -53,7 +55,7 @@ export default function App({ navigation: { navigate } }) {
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.CreateAccText}>No Account ?</Text>
-        <TouchableOpacity style={styles.CreateAccButton}>
+        <TouchableOpacity style={styles.CreateAccButton} onPress={SignUp}>
           <Text style={styles.CreateAccLink}>Create Account</Text>
         </TouchableOpacity>
       </View>
