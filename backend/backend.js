@@ -21,11 +21,6 @@ app.post('/login', (req, res, next) => {
         .then(function () {
             return res.status(201).send({ username: username, password: password });
         })
-        .catch(function (error){
-            if (error.code == '23505'){
-                return res.status(422).send({message : 'Cannot insert duplicate values'})
-            }
-        })
         .catch(next);
 });
 
@@ -35,6 +30,11 @@ app.post('/signup', (req, res, next) => {
     return connection.signup(Name, Pass)
         .then(function () {
             return res.status(201).json({logged_in: true});
+        })
+        .catch(function (error){
+            if (error.code === '23505'){
+                return res.status(422).send({message : 'Cannot insert duplicate values'})
+            }
         })
         .catch(next);
 });
