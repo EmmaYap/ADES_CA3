@@ -19,8 +19,12 @@ app.post('/login', (req, res, next) => {
     const password = req.body.password;
     return connection.login(username, password)
         .then(function (result) {
-            if(result)
-            return res.status(201).send({ username: username, password: password });
+            if(result.length == 0){
+                return res.status(401).send( {error : 'Invalid Credentials'})
+            }
+            else {
+                return res.status(201).send({ username: username, password: password });
+            }
         })
         // .catch(function (error){
             
