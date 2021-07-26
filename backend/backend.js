@@ -18,8 +18,8 @@ app.post('/login', (req, res, next) => {
     const username = req.query.username;
     const password = req.body.password;
     return connection.login(username, password)
-        .then(function (res) {
-            if(res.rows == 0){
+        .then(function (response) {
+            if(response.rows == 0){
                 return res.status(401).json({ logged_in: false });
             }
             else {
