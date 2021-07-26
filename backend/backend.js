@@ -4,7 +4,7 @@ const connection = require('./connection');
 const createHttpError = require('http-errors');
 
 const app = express();
-app.use(express.urlencoded({extended: true})); 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.options('*', cors());
 app.use(cors());
@@ -18,16 +18,17 @@ app.post('/login', (req, res, next) => {
     const username = req.query.username;
     const password = req.body.password;
     return connection.login(username, password)
-        .then(function (result) {
-            if(result.length == 0){
-                return res.status(401).send( {error : 'Invalid Credentials'})
+        .then(function (res) {
+            if(res.rows == 0){
+                return res.status(401).json({ logged_in: false });
             }
             else {
-                return res.status(201).send({ username: username, password: password });
+                return res.status(201).json({ logged_in: true });
             }
+
         })
         // .catch(function (error){
-            
+
         // })
         .catch(next);
 });
@@ -37,11 +38,11 @@ app.post('/signup', (req, res, next) => {
     const Pass = req.body.password;
     return connection.signup(Name, Pass)
         .then(function () {
-            return res.status(201).json({logged_in: true});
+            return res.status(201).json({ created: true });
         })
-        .catch(function (error){
-            if (error.code === '23505'){
-                return res.status(422).send({message : 'Cannot insert duplicate values'})
+        .catch(function (error) {
+            if (error.code === '23505') {
+                return res.status(422).send({ message: 'Cannot insert duplicate values' })
             }
         })
         .catch(next);
