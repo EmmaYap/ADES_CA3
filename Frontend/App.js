@@ -12,7 +12,8 @@ const Stack = createStackNavigator(); // create stack navigator
 
 const App = () => {
   return (
-    <NavigationContainer> {/* navigation container */}
+     // navigation container 
+    <NavigationContainer>
       {/* Stack navigator initial page is Home and disable header */}
       <Stack.Navigator initialRouteName="Login" screenOptions={{
         headerShown: false // dont show header

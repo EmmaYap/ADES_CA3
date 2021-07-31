@@ -47,22 +47,27 @@ export default function App({ navigation: { navigate } }) {
 
 
     return (
+        // keyboard will disappear once user clicks anywhere other than the Textbox
         <TouchableWithoutFeedback onPress={() => {
-            Keyboard.dismiss(); // keyboard will disappear once user clicks anywhere other than the Textbox
+            Keyboard.dismiss();
         }}>
             <View style={styles.container}>
                 <Text style={styles.Title}>DailyMemes</Text>
+                {/* username */}
                 <Text style={styles.label1}>Username : </Text>
                 <TextInput placeholder="Enter Username here" style={styles.inputbox1} autoCompleteType="username"
-                    onChangeText={text => SetName(text)} value={Username} minLength={8} /> {/* username */}
+                    onChangeText={text => SetName(text)} value={Username} minLength={8} />
+                {/* password */}
                 <Text style={styles.label2}>Password :</Text>
                 <TextInput placeholder="Enter Password here" style={styles.inputbox2}
-                    onChangeText={text => SetPassword(text)} value={password} secureTextEntry={true}  minLength={8}/>  {/* password */}
-                <TouchableOpacity style={styles.LoginButton} onPress={SignUp}>  {/* button to signup */}
+                    onChangeText={text => SetPassword(text)} value={password} secureTextEntry={true} minLength={8} />
+                {/* button to signup */}
+                <TouchableOpacity style={styles.LoginButton} onPress={SignUp}>
                     <Text style={styles.buttonText}>SignUp</Text>
                 </TouchableOpacity>
                 <Text style={styles.CreateAccText}>Already have an Account ?</Text>
-                <TouchableOpacity style={styles.CreateAccButton} onPress={() => navigation.goBack()}>  {/* button to go back to login page */}
+                {/* button to go back to login page */}
+                <TouchableOpacity style={styles.CreateAccButton} onPress={() => navigation.goBack()}>
                     <Text style={styles.CreateAccLink}>Login instead</Text>
                 </TouchableOpacity>
             </View>

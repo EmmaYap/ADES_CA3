@@ -49,7 +49,7 @@ export default function App() {
     const uploadUri = Platform.OS === 'android' ? uri.replace('file://', '') : uri; // platform used android, replace uri
     setUploading(true); // set true when uploading
     setTransferred(0); // set starting progress bar to 0
-    const task = storage() 
+    const task = storage()
       .ref(filename)
       .putFile(uploadUri); // reference filename and upload it to firebase storage
     // set progress state
@@ -89,31 +89,33 @@ export default function App() {
 
   return (
     <View>
-      {/* logout icon*/}
-      <Icon
-        raised
-        name='logout'
-        type='material'
-        color='#f50'
-        onPress={() => navigation.navigate('Login') } /> {/* navigate back to Login page*/}
+      {/* logout icon, navigate back to Login page*/}
+      <Icon raised name='logout' type='material' color='#f50' onPress={() => navigation.navigate('Login')} /> 
       <View style={styles.container}>
-        <TouchableOpacity style={styles.selectButton} onPress={selectImage}> {/* clcick to go to imagelibrary*/}
+        {/* cick to go to imagelibrary*/}
+        <TouchableOpacity style={styles.selectButton} onPress={selectImage}>
           <Text style={styles.buttonText}>Pick an image</Text>
         </TouchableOpacity>
         <View style={styles.imageContainer}>
-          {image !== null ? ( // image not null
-            <Image source={{ uri: image.uri }} style={styles.imageBox} /> // where image to upload appears
+          {/* image not null ?*/}
+          {image !== null ? (
+            // where image to upload appears
+            <Image source={{ uri: image.uri }} style={styles.imageBox} />
           ) : null}
-          {uploading ? ( // uploading ?
+          {/* uploading ? */}
+          {uploading ? (
             <View style={styles.progressBarContainer}>
-              <Progress.Bar progress={transferred} width={300} /> {/* progress bar*/}
+              {/* progress bar*/}
+              <Progress.Bar progress={transferred} width={300} />
             </View>
           ) : (
-            <TouchableOpacity style={styles.uploadButton} onPress={uploadImage}> {/* button to start uploading image*/}
+            // button to start uploading image
+            <TouchableOpacity style={styles.uploadButton} onPress={uploadImage}>
               <Text style={styles.buttonText}>Upload image</Text>
             </TouchableOpacity>
           )}
-          <TouchableOpacity style={styles.ViewButton} onPress={ViewMemes}> {/* button to navigate to page to view memes*/}
+          {/* button to navigate to page to view memes*/}
+          <TouchableOpacity style={styles.ViewButton} onPress={ViewMemes}>
             <Text style={styles.buttonText}>View Memes</Text>
           </TouchableOpacity>
         </View>

@@ -1,6 +1,6 @@
 // import necessary modules
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, Image, Alert, View} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image, View } from 'react-native';
 import database from '@react-native-firebase/database';
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
@@ -8,12 +8,12 @@ import { useNavigation } from '@react-navigation/native';
 export default function App() {
 
     React.useEffect(() => {
-            // read realtime database
-            read(); // anything in here is fire on component mount
-            return () => {
-               SetImage(null) // Anything in here is fired on component unmount.
-            }
-      }, []);
+        // read realtime database
+        read(); // anything in here is fire on component mount
+        return () => {
+            SetImage(null) // Anything in here is fired on component unmount.
+        }
+    }, []);
 
     const navigation = useNavigation(); // to use navigation
     const [ImageSet, SetImage] = React.useState(null); // image hook
@@ -43,18 +43,15 @@ export default function App() {
     return (
 
         <View style={styles.container}>
-             {/* logout icon*/}
-            <Icon
-                raised
-                name='logout'
-                type='material'
-                color='#f50'
-                onPress={() => navigation.navigate('Login')} />  {/* signout and navigate to login screen */}
-            <TouchableOpacity style={styles.selectButton} onPress={read}>  {/* button to random generate a meme */}
+            {/* logout icon, signout and navigate to login screen */}
+            <Icon raised name='logout' type='material' color='#f50' onPress={() => navigation.navigate('Login')} />
+            {/* button to random generate a meme */}
+            <TouchableOpacity style={styles.selectButton} onPress={read}>
                 <Text style={styles.buttonText}> Generate Meme</Text>
             </TouchableOpacity>
             <Image source={{ uri: ImageSet }} style={styles.imageBox} />
-            <TouchableOpacity style={styles.UploadButton} onPress={Upload}> {/* navigate to upload image screen */}
+            {/* navigate to upload image screen */}
+            <TouchableOpacity style={styles.UploadButton} onPress={Upload}>
                 <Text style={styles.buttonText}> Upload Meme</Text>
             </TouchableOpacity>
         </View>

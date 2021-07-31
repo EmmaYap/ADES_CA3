@@ -41,22 +41,25 @@ export default function App({ navigation: { navigate } }) {
 
 
   return (
-    <TouchableWithoutFeedback onPress={() => {
-      Keyboard.dismiss(); // keyboard will disappear once user clicks anywhere other than the Textbox
-    }}>
+     // keyboard will disappear once user clicks anywhere other than the Textbox
+    <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss(); }}>
       <View style={styles.container}>
         <Text style={styles.Title}>DailyMemes</Text>
+         {/* username */}
         <Text style={styles.label1}>Username : </Text>
         <TextInput placeholder="Enter Username here" style={styles.inputbox1} autoCompleteType="username"
-          onChangeText={text => SetName(text)} value={Username} /> {/* username */}
+          onChangeText={text => SetName(text)} value={Username} />
+          {/* password */}
         <Text style={styles.label2}>Password :</Text>
         <TextInput placeholder="Enter Password here" style={styles.inputbox2}
-          onChangeText={text => SetPassword(text)} value={Password} secureTextEntry={true} /> {/* password */}
-        <TouchableOpacity style={styles.LoginButton} onPress={Login}>  {/* Login */}
+          onChangeText={text => SetPassword(text)} value={Password} secureTextEntry={true} />
+          {/* Login */}
+        <TouchableOpacity style={styles.LoginButton} onPress={Login}>  
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.CreateAccText}>No Account ?</Text>
-        <TouchableOpacity style={styles.CreateAccButton} onPress={SignUp}> {/* navigate to signup page */}
+        {/* navigate to signup page */}
+        <TouchableOpacity style={styles.CreateAccButton} onPress={SignUp}> 
           <Text style={styles.CreateAccLink}>Create Account</Text>
         </TouchableOpacity>
       </View>
