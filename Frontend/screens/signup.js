@@ -13,35 +13,35 @@ export default function App({ navigation: { navigate } }) {
     const host = 'https://ades-ca3-hosting.herokuapp.com' // backend host
 
     function SignUp() { // sign up
-        fetch(`${host}/signup?username=${Username}`, { // call backend api
-            method: 'POST', // api method is POST
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8' // header type
-            },
-            body: JSON.stringify({
-                password: password // send password to backend throught the req.body
+        if (Username.length < 8 || password.length < 8) { // if username or password length less than 8
+            Alert.alert(`${Username} or ${password} is too short.`, `Min length is 8`) // notify user that username or password is too short
+        }
+        else {
+            fetch(`${host}/signup?username=${Username}`, { // call backend api
+                method: 'POST', // api method is POST
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8' // header type
+                },
+                body: JSON.stringify({
+                    password: password // send password to backend throught the req.body
+                })
             })
-        })
-            .then(function (response) {
+                .then(function (response) {
 
-                if (response.status == 201) { // if backend returns status 201
-                    if (Username.length < 8 || password.length < 8) { // if username or password length less than 8
-                        Alert.alert(`${Username} or ${password} is too short.`, `Min length is 8`) // notify user that username or password is too short
-                    }
-                    else{
+                    if (response.status == 201) { // if backend returns status 201
                         Alert.alert(`Account Created`, `Welcome ${Username} to DailyMemes`) // notify user on successful creation of account
                         navigate('Login'); // navigate back to login page
                     }
-                }
-                else if (response.status == 422) { // if backend response with status 422 
-                    Alert.alert(`Account already exists`, `Choose a different username`) // means the username already have been taken
-                }
-                else { // else
-                    Alert.alert('System Issue', `Error Code: ${response.status}`) // system error
-                }
-                SetName(""); // set name to empty string
-                SetPassword(""); // set password to empty string
-            })
+                    else if (response.status == 422) { // if backend response with status 422 
+                        Alert.alert(`Account already exists`, `Choose a different username`) // means the username already have been taken
+                    }
+                    else { // else
+                        Alert.alert('System Issue', `Error Code: ${response.status}`) // system error
+                    }
+                    SetName(""); // set name to empty string
+                    SetPassword(""); // set password to empty string
+                })
+        }
     }
 
 
