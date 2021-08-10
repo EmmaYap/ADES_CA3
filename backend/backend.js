@@ -31,7 +31,7 @@ app.post('/login', (req, res, next) => {
             }
 
         })
-        .catch(next()); // if caught an error go next
+        .catch(next); // if caught an error go next
 });
 
 // signup api
@@ -47,7 +47,7 @@ app.post('/signup', (req, res, next) => {
                 return res.status(422).send({ message: 'Cannot insert duplicate values' })  // send status 422 and message
             }
         })
-        .catch(next()); // if error code not 23505 go next
+        .catch(next); // if error code not 23505 go next
 });
 
 // error handling
